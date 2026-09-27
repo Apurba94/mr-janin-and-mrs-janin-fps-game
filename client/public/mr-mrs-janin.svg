@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" role="img" aria-label="Mr Janin and Mrs Janin helmets">
+  <!-- Briefing art: Mr Janin (cyan) and Mrs Janin (magenta) arena helmets, brutalist line style. -->
+  <g fill="none" stroke-linejoin="round" stroke-width="6">
+    <g stroke="#00e5ff">
+      <path d="M40 250v-70a70 70 0 0 1 140 0v70l-20 30H60z"/>
+      <path d="M58 188h104v34H58z" fill="#00e5ff" fill-opacity=".22"/>
+      <path d="M110 110v-22M72 124l-10-14M148 124l10-14"/>
+      <path d="M60 280h100v26H60z"/>
+    </g>
+    <g stroke="#ff2d87">
+      <path d="M150 300v-66a62 62 0 0 1 124 0v66l-18 26H168z"/>
+      <path d="M166 242h92l-8 30h-76z" fill="#ff2d87" fill-opacity=".22"/>
+      <path d="M212 172c14-26 44-30 56-12" />
+      <path d="M168 326h88v24h-88z"/>
+    </g>
+    <path d="M34 356h252" stroke="#b9ff3d"/>
+  </g>
+  <g font-family="Russo One, Arial Black, sans-serif" font-size="22" letter-spacing="3">
+    <text x="62" y="384" fill="#00e5ff">MR</text>
+    <text x="196" y="384" fill="#ff2d87">MRS</text>
+  </g>
+</svg>

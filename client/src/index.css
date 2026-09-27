@@ -1,0 +1,44 @@
+/* Brutalist Arcade Barricade style: cyan player signals, magenta hostility, hard-edged cockpit instrumentation. */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Russo+One&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: "IBM Plex Mono", monospace;
+  color: #effaff;
+  background: #07111f;
+  font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { width: 100%; min-width: 320px; height: 100%; margin: 0; overflow: hidden; }
+button { font: inherit; }
+
+.janin-game { position: relative; width: 100%; min-height: 100vh; overflow: hidden; background: #07111f; color: #effaff; user-select: none; }
+.janin-game__canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; outline: none; cursor: crosshair; }
+.janin-game__vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 35%, rgba(1, 5, 12, .22) 72%, rgba(1, 5, 12, .74) 130%), repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px); mix-blend-mode: screen; }
+.janin-game--hit .janin-game__vignette { background: radial-gradient(ellipse at center, transparent 31%, rgba(255,45,135,.17) 72%, rgba(255,45,135,.6) 130%), repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 4px); }
+
+.hud { position: absolute; z-index: 3; pointer-events: none; border: 1px solid rgba(0,229,255,.36); background: linear-gradient(120deg, rgba(5, 18, 32, .78), rgba(5, 18, 32, .34)); box-shadow: inset 0 0 0 1px rgba(7, 17, 31, .75), 0 0 28px rgba(0, 229, 255, .07); backdrop-filter: blur(3px); }
+.hud::before { content: ""; position: absolute; width: 10px; height: 10px; border-top: 2px solid #00e5ff; border-left: 2px solid #00e5ff; top: -1px; left: -1px; }
+.eyebrow { margin: 0; color: #00e5ff; font-size: 10px; font-weight: 600; letter-spacing: .15em; line-height: 1.2; }
+.hud--identity { top: 24px; left: 24px; width: min(410px, calc(100vw - 48px)); padding: 13px 16px 11px; clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%); }
+.hud--identity h1 { margin: 7px 0 6px; color: #f5fdff; font-family: "Russo One", sans-serif; font-size: clamp(18px, 2.2vw, 28px); font-weight: 400; letter-spacing: .035em; line-height: 1; }
+.hud--identity h1 span { color: #ff2d87; }
+.sector-label { margin: 0; color: #9cb3c9; font-size: 9px; letter-spacing: .08em; }
+.hud--mission { top: 24px; right: 24px; min-width: 130px; padding: 12px 15px 10px; text-align: right; clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%); }
+.hud--mission strong { display: inline-block; margin: 3px 0 0; color: #ff2d87; font-family: "Russo One", sans-serif; font-size: 32px; line-height: .9; text-shadow: 0 0 14px rgba(255,45,135,.7); }
+.hud--mission span { display: block; color: #b9ff3d; font-size: 9px; font-weight: 600; letter-spacing: .11em; }
+
+.crosshair { position: absolute; z-index: 4; top: 50%; left: 50%; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; }
+.crosshair::before, .crosshair::after, .crosshair i, .crosshair b { content: ""; position: absolute; display: block; background: #00e5ff; box-shadow: 0 0 10px rgba(0,229,255,.85); }
+.crosshair::before { width: 11px; height: 2px; left: 0; top: 18px; }.crosshair::after { width: 11px; height: 2px; right: 0; top: 18px; }.crosshair i { width: 2px; height: 11px; left: 18px; top: 0; }.crosshair b { width: 2px; height: 11px; left: 18px; bottom: 0; }.crosshair em { position: absolute; left: 16px; top: 16px; width: 6px; height: 6px; border: 1px solid #ff2d87; transform: rotate(45deg); }
+
+.hud--cockpit { display: grid; grid-template-columns: 1.05fr 1.22fr 1fr; gap: 1px; bottom: 24px; left: 50%; width: min(905px, calc(100vw - 48px)); transform: translateX(-50%); background: rgba(0,229,255,.27); clip-path: polygon(2% 0, 98% 0, 100% 18%, 100% 100%, 0 100%, 0 18%); }
+.hud--cockpit > div { min-height: 98px; padding: 14px 17px 12px; background: rgba(4, 17, 30, .88); }.health-panel__title { display: flex; align-items: baseline; justify-content: space-between; color: #b9ff3d; font-size: 10px; font-weight: 600; letter-spacing: .12em; }.health-panel__title strong { font-family: "Russo One", sans-serif; font-size: 26px; letter-spacing: 0; }.health-track { width: 100%; height: 8px; margin: 11px 0 8px; overflow: hidden; background: rgba(128, 153, 176, .2); }.health-track i { display: block; height: 100%; background: linear-gradient(90deg, #ff2d87 0 28%, #ffca58 28% 52%, #b9ff3d 52%); box-shadow: 0 0 11px rgba(185,255,61,.7); transition: width 120ms linear; }.health-panel p, .weapon-keys { margin: 0; color: #7890aa; font-size: 8px; letter-spacing: .055em; }.weapon-panel { border-left: 1px solid rgba(0,229,255,.13); border-right: 1px solid rgba(0,229,255,.13); }.weapon-panel strong { display: block; min-height: 20px; margin-top: 5px; color: #f5fdff; font-family: "Russo One", sans-serif; font-size: 16px; font-weight: 400; letter-spacing: .03em; }.ammo-line { margin: 2px 0 5px; }.ammo-line b { color: #00e5ff; font-family: "Russo One", sans-serif; font-size: 28px; font-weight: 400; }.ammo-line span { color: #8398ac; font-size: 12px; }.score-panel { text-align: right; }.score-panel strong { display: block; margin: 6px 0 4px; color: #ffca58; font-family: "Russo One", sans-serif; font-size: 25px; letter-spacing: .04em; line-height: 1; }.score-panel span { color: #9cb3c9; font-size: 9px; font-weight: 600; letter-spacing: .075em; }
+
+.briefing { position: absolute; z-index: 7; top: 50%; left: 50%; display: grid; grid-template-columns: minmax(160px, .65fr) minmax(280px, 1.35fr); width: min(760px, calc(100vw - 48px)); min-height: 285px; transform: translate(-50%, -50%); border: 1px solid #00e5ff; background: linear-gradient(105deg, rgba(3,14,25,.95), rgba(9,30,47,.88)); box-shadow: 0 0 0 1px rgba(0,229,255,.17), 0 22px 60px rgba(0,0,0,.52); clip-path: polygon(0 0, 96% 0, 100% 12%, 100% 100%, 4% 100%, 0 88%); animation: briefing-in 220ms cubic-bezier(.23,1,.32,1) both; }
+.briefing__art { overflow: hidden; background: linear-gradient(180deg, rgba(0,229,255,.18), rgba(255,45,135,.08)); }.briefing__art img { width: 100%; height: 100%; min-height: 285px; object-fit: cover; object-position: center; mix-blend-mode: screen; filter: saturate(1.1) contrast(1.06); }.briefing__copy { display: flex; flex-direction: column; justify-content: center; padding: 31px 38px 31px 28px; }.briefing h2 { max-width: 450px; margin: 9px 0 12px; color: #f5fdff; font-family: "Russo One", sans-serif; font-size: clamp(26px, 4.2vw, 46px); font-weight: 400; line-height: .97; letter-spacing: -.015em; }.briefing__copy > p:not(.eyebrow) { max-width: 450px; margin: 0 0 20px; color: #b6c8d9; font-size: 11px; line-height: 1.72; }.briefing button { align-self: flex-start; padding: 12px 16px; border: 1px solid #00e5ff; border-radius: 0; color: #05101d; background: #00e5ff; box-shadow: 5px 5px 0 #ff2d87; font-size: 11px; font-weight: 600; letter-spacing: .1em; transition: transform 150ms cubic-bezier(.23,1,.32,1), box-shadow 150ms cubic-bezier(.23,1,.32,1), background 150ms; }.briefing button:hover { background: #b9ff3d; transform: translate(2px, 2px); box-shadow: 3px 3px 0 #ff2d87; }.briefing button:active { transform: translate(5px, 5px) scale(.97); box-shadow: 0 0 0 #ff2d87; }
+.wave-alert { position: absolute; z-index: 6; top: 50%; left: 50%; padding: 11px 15px; border: 1px solid #b9ff3d; color: #b9ff3d; background: rgba(3,14,25,.86); font-family: "Russo One", sans-serif; font-size: 14px; letter-spacing: .08em; transform: translate(-50%, -50%); animation: wave-alert 700ms ease-out both; }
+@keyframes briefing-in { from { opacity: 0; transform: translate(-53%, -50%); } to { opacity: 1; transform: translate(-50%, -50%); } } @keyframes wave-alert { from { opacity: 0; transform: translate(-50%, -44%); } 25%, 70% { opacity: 1; transform: translate(-50%, -50%); } to { opacity: 0; transform: translate(-50%, -55%); } }
+@media (max-width: 680px) { .hud--identity { top: 12px; left: 12px; width: calc(100vw - 126px); padding: 10px 11px; }.hud--identity h1 { font-size: 13px; white-space: nowrap; }.hud--mission { top: 12px; right: 12px; min-width: 94px; padding: 10px 11px; }.hud--mission strong { font-size: 25px; }.sector-label { display: none; }.hud--cockpit { bottom: 12px; width: calc(100vw - 24px); grid-template-columns: 1fr 1.05fr; }.hud--cockpit > div { min-height: 78px; padding: 10px; }.score-panel { display: none; }.weapon-panel { border-right: 0; }.weapon-keys { display: none; }.briefing { grid-template-columns: 1fr; min-height: 0; }.briefing__art { display: none; }.briefing__copy { min-height: 275px; padding: 28px 26px; }.crosshair { transform: scale(.85); }.health-panel__title strong { font-size: 21px; }.ammo-line b { font-size: 24px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
